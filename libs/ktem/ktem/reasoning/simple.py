@@ -161,10 +161,39 @@ class FullQAPipeline(BaseReasoning):
 
         return docs, info
 
+    def process_plantuml_code(self, plantuml_str):
+        lines = [line for line in plantuml_str.split("\n") if line.strip()]
+
+        first_at_index = next(
+            (i for i, line in enumerate(lines) if line.startswith("@")), None
+        )
+        if first_at_index is not None:
+            lines[first_at_index] = "@startmindmap"
+
+        at_indices = [i for i, line in enumerate(lines) if line.startswith("@")]
+        if len(at_indices) > 1:
+            lines[at_indices[1]] = "@endmindmap"
+        else:
+            star_indices = [
+                i for i, line in enumerate(lines) if line.lstrip().startswith("*")
+            ]
+            if star_indices:
+                last_star_index = star_indices[-1]
+                if last_star_index + 1 == len(lines):
+                    lines.append("@endmindmap")
+                else:
+                    lines[last_star_index + 1] = "@endmindmap"
+            else:
+                lines.append("@endmindmap")
+
+        return "\n".join(lines)
+
     def prepare_mindmap(self, answer) -> Document | None:
         mindmap = answer.metadata["mindmap"]
         if mindmap:
             mindmap_text = mindmap.text
+            mindmap_text = self.process_plantuml_code(mindmap_text)
+            print("Mindmap Text is: ", mindmap_text)
             uml_renderer = PlantUML()
 
             try:
