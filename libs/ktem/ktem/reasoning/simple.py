@@ -439,7 +439,11 @@ class FullQAPipeline(BaseReasoning):
                 "name": "Citation style",
                 "value": "highlight",
                 "component": "radio",
-                "choices": ["highlight", "inline", "off"],
+                "choices": [
+                    ("highlight (long answer)", "highlight"),
+                    ("inline (precise answer)", "inline"),
+                    ("off", "off"),
+                ],
             },
             "create_mindmap": {
                 "name": "Create Mindmap",
