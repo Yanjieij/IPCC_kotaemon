@@ -1,11 +1,7 @@
-# About Kotaemon
+# About IPCC RAG
 
-An open-source tool for chatting with your documents. Built with both end users and
-developers in mind.
+A Q&A and visualization platform designed to help you understand geospatial reports published by the IPCC.
 
-[Source Code](https://github.com/Cinnamon/kotaemon) |
-[Live Demo](https://huggingface.co/spaces/cin-model/kotaemon-demo)
+The Intergovernmental Panel on Climate Change: [IPCC Website](https://www.ipcc.ch/)
 
-[User Guide](https://cinnamon.github.io/kotaemon/) |
-[Developer Guide](https://cinnamon.github.io/kotaemon/development/) |
-[Feedback](https://github.com/Cinnamon/kotaemon/issues)
+Visualization of IPCC RAG is implemented based on **Kotaemon**: [Kotaemon-Github](https://github.com/Cinnamon/kotaemon)
